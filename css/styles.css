@@ -1,0 +1,211 @@
+:root{
+    --bg-body:rgb(237, 242, 248);
+    --bg-tooltip:hsl(218, 15%, 40%);
+    --color-title: hsl(217, 19%, 35%);
+    --color-text: hsl(214, 17%, 51%);
+    --Grayish-Blue:hsl(212, 23%, 69%);
+    --Light-Grayish-Blue: hsl(210, 46%, 95%);
+    --bg-tooltip:rgb(73,85,106);
+    --bg-icon-active:hsl(214, 17%, 51%);
+}
+
+*,::after,::before{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 5rem 0;
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    background-color: var(--Light-Grayish-Blue);
+}
+.card{
+    margin: auto;
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.card__header{
+    height: 200px;
+    overflow: hidden;
+}
+.card__image{
+    max-width: 100%;
+    object-position:0 -15px;
+}
+
+.card__body,
+.card__footer,
+.card__tooltipShare{
+    padding:  1rem 1.2rem;
+}
+.card__body{
+    margin-bottom: 2rem;
+}
+.card__title{
+    font-size: 1.1rem;
+    color:var(--color-title);
+    line-height: 1.5;
+}
+.card__text{
+    color:var(--color-text);
+    line-height: 1.4;
+    font-size: .9rem;
+}
+
+.card__footer{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card__avatar{
+    width: 50px;
+    border-radius: 50%;
+}
+.card__footerInfo{
+    width: 180px;
+    display: flex;
+    align-items: center;
+}
+.card__footer-name{
+    color: var(--color-title);
+    margin: 0;
+    font-weight: 700;
+}
+.card__footer-time{
+    color: var(--color-text);
+}
+.card__footer-data{
+    margin-left: 15px;
+}
+.share{
+    padding: 10px;
+    border-radius: 100%;
+    background-color:var(--bg-body);
+    z-index: 10;
+}
+#active-tooltip{
+    display: none;
+}
+.card__tooltipShare{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    background-color:var(--bg-tooltip);
+    transform: translateY(100%); 
+    transition: transform .1s ease-in;
+}
+ #active-tooltip:checked ~ .card__tooltipShare{
+    transform: translateY(0);
+}
+#active-tooltip:checked ~.share{
+    background-color: var(--bg-icon-active);
+}
+#active-tooltip:checked~.share img
+{
+    filter: brightness(100);
+}
+.share__text{
+    color:var(--Grayish-Blue);
+    font-size: 1rem;
+    letter-spacing:3px;
+    font-weight:100;
+    margin-right: 10%;
+    
+}
+
+.card__socialMedia img{
+    margin-right: 20px;
+    width: 1.5rem;
+}
+@media screen and (min-width: 1200px){
+    body{
+        padding:0;
+    }
+
+    .main{
+        width: 100%;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+    }
+    .card{
+        max-width: 700px;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: 200px 100px;
+        overflow: visible;
+    }
+    .card__header{
+        height: 100%;
+        grid-row: 1/-1;
+    }
+    .card__image{
+        object-position: 0;
+        height: 100%;
+        width: auto;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+
+    }
+    .card__footer{
+        grid-column: 2/-1;
+    }
+    .card__body,
+    .card__footer{
+        padding: 1rem 3rem;
+    }
+    .card__tooltipShare{
+    position: absolute;
+    top: -60px;
+    bottom: 100px;
+    padding: 2rem;
+    width: 300px;
+    border-radius: 10px;
+    transform: translateY(0) translateX(230px);
+    opacity: 0;
+    justify-content: space-between;
+    }
+    .card__socialMedia img{
+        margin-right: 20px;
+        width: 1rem;
+    }
+    .card__tooltipShare::after{
+       content: "";
+       position: absolute;
+       display: block;
+       bottom: -10px;
+       left:130px;
+       width: 0;
+       height: 0;
+       border-left: 20px solid transparent;
+       border-right: 20px solid transparent;
+       border-top: 20px solid var(--bg-tooltip);
+       
+    }
+    .share:hover ~ .card__tooltipShare{
+        opacity: 1;
+    }
+    #active-tooltip:checked ~ .card__tooltipShare{
+        transform: translateX(230px);     
+    }
+    .share:hover{
+        background-color: var(--bg-icon-active);
+    }
+    .share:hover{
+        background-color: var(--bg-icon-active);
+    }
+    .share:hover img{
+        filter: brightness(100);
+    }
+    
+}
